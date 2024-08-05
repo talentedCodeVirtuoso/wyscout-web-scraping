@@ -5,7 +5,6 @@ from time import sleep
 import pandas as pd
 from bs4 import BeautifulSoup
 from datetime import datetime
-
 import selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -45,19 +44,25 @@ def login():
         driver.get(url)
         driver.maximize_window()
         WebDriverWait(driver, 120).until(
-            EC.presence_of_element_located((By.ID, "login-page"))
+            EC.presence_of_element_located((By.CSS_SELECTOR, "main._widget.login-id"))
         )
         sleep(1)
         driver.find_element(
-            By.CSS_SELECTOR, "input[type='email'][id='email']"
+            By.CSS_SELECTOR,
+            "input.input.c19ad00c3.c30d9afca#username[inputmode='email']",
         ).send_keys(username)
         sleep(2)
         driver.find_element(
-            By.CSS_SELECTOR, "input[type='password'][id='password']"
+            By.CSS_SELECTOR,
+            "button.c1d1b1e07.c94ec4107.c3a9491fe.cc1fd6969._button-login-id[data-action-button-primary='true']",
+        ).click()
+        driver.find_element(
+            By.CSS_SELECTOR, "input.input.c19ad00c3.ce9b3173b#password[type='password']"
         ).send_keys(password)
         sleep(1)
         driver.find_element(
-            By.CSS_SELECTOR, "button[type='submit'][id='logIn']"
+            By.CSS_SELECTOR,
+            "button.c1d1b1e07.c94ec4107.c3a9491fe.cc1fd6969._button-login-password[data-action-button-primary='true']",
         ).click()
         print("Logged in. . .")
         force_login_container = "login_restrictor_dialog_container"

@@ -45,11 +45,11 @@ def login():
         driver.get(url)
         driver.maximize_window()
         WebDriverWait(driver, 120).until(
-            EC.presence_of_element_located((By.ID, "login-page"))
+            EC.presence_of_element_located((By.CSS_SELECTOR, "login-page"))
         )
         sleep(1)
         driver.find_element(
-            By.CSS_SELECTOR, "input[type='email'][id='email']"
+            By.CSS_SELECTOR, "inputmode[type='email'][id='email']"
         ).send_keys(username)
         sleep(2)
         driver.find_element(
